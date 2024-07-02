@@ -78,10 +78,10 @@ class ResultsWindow(QWidget):
 
     def find_data(self, search_text):
         file_path = 'accounts_data/accounts_data.xlsx'
-        
+
         if not os.path.exists(file_path):
-            with open(file_path, 'w') as f:
-                f.write()
+            workbook = Workbook()
+            workbook.save(file_path)
 
         wb = openpyxl.load_workbook(file_path, read_only=True)
         ws = wb.active

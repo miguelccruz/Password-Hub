@@ -1,4 +1,4 @@
-import sys
+import os
 from openpyxl import Workbook
 import openpyxl
 from PyQt6.QtWidgets import (
@@ -64,6 +64,15 @@ class FormWindow(QWidget):
 
         txt_file_path = 'accounts_data/account_names.txt'
         file_path = 'accounts_data/accounts_data.xlsx'
+
+        if not os.path.exists(txt_file_path):
+            with open(file_path, 'w') as f:
+                f.write("")
+
+        if not os.path.exists(file_path):
+            workbook = Workbook()
+            workbook.save(file_path)
+            
         wb = openpyxl.load_workbook(file_path)
         ws1 = wb.active
 

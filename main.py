@@ -77,7 +77,7 @@ class MainWindow(QWidget):
     def read_account_names(self, file_path):
         if not os.path.exists(file_path):
             with open(file_path, 'w') as f:
-                f.write()
+                f.write("")
         try: 
             with open(file_path, 'r') as file:
                 accounts = [line.strip() for line in file.readlines()]
