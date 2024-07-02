@@ -124,6 +124,7 @@ celerybeat.pid
 # Environments
 *.xlsx
 *.txt
+!.gitkeep
 .env
 .venv
 env/
