@@ -122,8 +122,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.xlsx
-.txt
+*.xlsx
+*.txt
 accounts_data/
 .env
 .venv
