@@ -80,7 +80,7 @@ class FormWindow(QWidget):
             found_clone = False
 
             # checks if account name already exists in database
-            for row in ws1.iter_rows(min_col=2, max_col=2, min_row=2):
+            for row in ws1.iter_rows(min_col=2, max_col=2, min_row=1):
                 for cell in row:
                     if self.account_name.text() == str(cell.value).lower():
                         QMessageBox.critical(
