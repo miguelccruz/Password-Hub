@@ -4,7 +4,6 @@ import openpyxl
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QWidget,
-    QVBoxLayout,
     QLabel,
     QPushButton,
     QFormLayout,
@@ -86,7 +85,7 @@ class ResultsWindow(QWidget):
         wb = openpyxl.load_workbook(file_path, read_only=True)
         ws = wb.active
 
-        for row in ws.iter_rows(min_col=2, max_col=2, min_row=2):
+        for row in ws.iter_rows(min_col=2, max_col=2, min_row=1):
             for cell in row:
                 if search_text.lower() in str(cell.value).lower():
                     category_value = ws.cell(row=cell.row, column=1).value
@@ -181,7 +180,7 @@ class UpdateWindow(QWidget):
         found_clone = False
 
         # checks if account name already exists in database
-        for row in ws.iter_rows(min_col=2, max_col=2, min_row=2):
+        for row in ws.iter_rows(min_col=2, max_col=2, min_row=1):
             for cell in row:
                 if self.account_name.text() == str(cell.value).lower():
                     QMessageBox.critical(

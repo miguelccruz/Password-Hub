@@ -72,36 +72,36 @@ class FormWindow(QWidget):
         if not os.path.exists(file_path):
             workbook = Workbook()
             workbook.save(file_path)
-            
-        wb = openpyxl.load_workbook(file_path)
-        ws1 = wb.active
+        else: 
+            wb = openpyxl.load_workbook(file_path)
+            ws1 = wb.active
 
-        # data_validation flag
-        found_clone = False
+            # data_validation flag
+            found_clone = False
 
-        # checks if account name already exists in database
-        for row in ws1.iter_rows(min_col=2, max_col=2, min_row=2):
-            for cell in row:
-                if self.account_name.text() == str(cell.value).lower():
-                    QMessageBox.critical(
-                        self,
-                        'Error',
-                        'Account Name already exists in database'
-                    )
-                    found_clone = True
+            # checks if account name already exists in database
+            for row in ws1.iter_rows(min_col=2, max_col=2, min_row=2):
+                for cell in row:
+                    if self.account_name.text() == str(cell.value).lower():
+                        QMessageBox.critical(
+                            self,
+                            'Error',
+                            'Account Name already exists in database'
+                        )
+                        found_clone = True
+                        break
+                if found_clone:
                     break
-            if found_clone:
-                break
                     
-        if not found_clone:
-            ws1.append(data)
-            wb.save(filename=file_path)
-            print("saved to xlsx file")
-            self.close()
+            if not found_clone:
+                ws1.append(data)
+                wb.save(filename=file_path)
+                print("saved to xlsx file")
+                self.close()
 
-            # write in txt file for autocomplete
-            with open(txt_file_path, 'a') as file:
-                file.write(self.account_name.text() + '\n')
+                # write in txt file for autocomplete
+                with open(txt_file_path, 'a') as file:
+                    file.write(self.account_name.text() + '\n')
 
     def toggle_password_visibility(self, checked):
         if checked:

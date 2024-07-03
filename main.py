@@ -90,7 +90,7 @@ class MainWindow(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    app.setStyleSheet(Path('style/style.qss').read_text())
+    app.setStyleSheet(Path('style\style.qss').read_text())
     window = MainWindow()
 
     sys.exit(app.exec())
